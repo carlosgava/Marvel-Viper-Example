@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ResponseData<Response: Decodable>:Decodable {
+struct ResponseData<Response: Decodable>: Decodable {
     let code: Int
     let status: String?
     let data: DataContainer<Response>?

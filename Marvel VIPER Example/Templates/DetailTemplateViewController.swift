@@ -66,7 +66,6 @@ class DetailTemplateViewController: UIViewController, UITableViewDelegate {
         view.layoutSubviews()
     }
 
-
     private func setupImage() {
         view.addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +76,7 @@ class DetailTemplateViewController: UIViewController, UITableViewDelegate {
         image.contentMode = .scaleAspectFill
         view.layoutSubviews()
     }
-    
+
     private func setGradient() {
         let view = UIView(frame: image.frame)
         let gradient = CAGradientLayer()

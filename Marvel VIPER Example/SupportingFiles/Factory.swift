@@ -14,13 +14,13 @@ class Factory {
         let router = CharacterSearchRouter(factory: self)
         let presenter = CharacterSearchPresenter(repository: repository, router: router)
         let viewController = CharacterSearchViewController(presenter: presenter)
-        
+
         router.viewController = viewController
         presenter.view = viewController
 
         return viewController
     }
-    
+
     func getCharacterFoundDetail(character: Character, image: UIImage?) -> DetailCharacterViewController {
         let repository = DetailCharacterRepository(character: character, image: image)
         let router = DetailCharacterRouter(factory: self)

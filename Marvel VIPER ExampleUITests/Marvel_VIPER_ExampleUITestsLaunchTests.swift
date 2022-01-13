@@ -7,7 +7,7 @@
 
 import XCTest
 
-class Marvel_VIPER_ExampleUITestsLaunchTests: XCTestCase {
+class MarvelVIPERExampleUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

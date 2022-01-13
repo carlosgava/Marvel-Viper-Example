@@ -16,7 +16,7 @@ protocol CharacterSearchViewControllerProtocol: AnyObject {
 
 class CharacterSearchViewController: SearchTemplateViewController, UITableViewDataSource {
     private var presenter: CharacterSearchPresenterProtocol
-    private var charactersArray = [Character]()
+    private var charsArray = [Character]()
 
     init(presenter: CharacterSearchPresenterProtocol) {
         self.presenter = presenter
@@ -46,7 +46,7 @@ class CharacterSearchViewController: SearchTemplateViewController, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return charactersArray.count
+        return charsArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,7 +56,9 @@ class CharacterSearchViewController: SearchTemplateViewController, UITableViewDa
         cell.imageView?.layer.masksToBounds = true
         cell.imageView?.layer.cornerRadius = 40
 
-        if let name = charactersArray[indexPath.row].name, let details = charactersArray[indexPath.row].description, let url = charactersArray[indexPath.row].thumbnail?.url {
+        if let name = charsArray[indexPath.row].name,
+           let details = charsArray[indexPath.row].description,
+           let url = charsArray[indexPath.row].thumbnail?.url {
             cell.textLabel?.text = name
             cell.detailTextLabel?.text = details != "" ? details : "Sem detalhes do heroi"
             cell.detailTextLabel?.textColor = .systemGray
@@ -64,7 +66,8 @@ class CharacterSearchViewController: SearchTemplateViewController, UITableViewDa
 
             if let imageForCrop = imagesDict[url] {
                 let cropSide = min(imageForCrop.size.width, imageForCrop.size.height)
-                if let newImage = imageForCrop.cgImage?.cropping(to: CGRect(x: 0, y: 0, width: cropSide, height: cropSide)) {
+                let rect = CGRect(x: 0, y: 0, width: cropSide, height: cropSide)
+                if let newImage = imageForCrop.cgImage?.cropping(to: rect) {
                     cell.imageView?.image = UIImage(cgImage: (newImage))
                 }
             }
@@ -74,14 +77,14 @@ class CharacterSearchViewController: SearchTemplateViewController, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let image = tableView.cellForRow(at: indexPath)?.imageView?.image
-        presenter.showDetail(of: charactersArray[indexPath.row], with: image)
+        presenter.showDetail(of: charsArray[indexPath.row], with: image)
     }
 }
 
 extension CharacterSearchViewController: CharacterSearchViewControllerProtocol {
     func showStub() {
         dummy.isHidden = false
-        charactersArray = []
+        charsArray = []
         tableView.reloadData()
     }
 
@@ -91,7 +94,7 @@ extension CharacterSearchViewController: CharacterSearchViewControllerProtocol {
     }
 
     func show(heroes: [Character]) {
-        charactersArray = heroes
+        charsArray = heroes
         dummy.isHidden = true
         tableView.reloadData()
     }

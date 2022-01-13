@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DataContainer<Results: Decodable>:Decodable {
+struct DataContainer<Results: Decodable>: Decodable {
     let offset: Int
     let limit: Int
     let total: Int

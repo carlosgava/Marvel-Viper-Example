@@ -10,7 +10,7 @@ import UIKit
 
 class EmptyView: UIView {
     private var image = UIImageView(image: UIImage(named: "Search"))
-    
+
     var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -46,4 +46,3 @@ class EmptyView: UIView {
         label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
     }
 }
-

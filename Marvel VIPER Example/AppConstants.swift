@@ -8,6 +8,6 @@
 import Foundation
 
 struct AppConstants {
-    static let publicKey :String = ""
-    static let privateKey:String = ""
+    static let publicKey: String = ""
+    static let privateKey: String = ""
 }

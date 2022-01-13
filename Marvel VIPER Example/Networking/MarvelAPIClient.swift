@@ -23,7 +23,7 @@ class MarvelAPIClient {
                                     completion: @escaping (Result<DataContainer<T.Response>, Error>) -> Void) {
         let endpoint = self.endpoint(for: request)
 
-        let task = session.dataTask(with: URLRequest(url: endpoint)) { data, response, error in
+        let task = session.dataTask(with: URLRequest(url: endpoint)) { data, _, error in
             if let data = data {
                 do {
                     let marvelResponse = try JSONDecoder().decode(ResponseData<T.Response>.self, from: data)
@@ -58,7 +58,7 @@ class MarvelAPIClient {
         let commonQueryItems = [
             URLQueryItem(name: "ts", value: timestamp),
             URLQueryItem(name: "hash", value: hash),
-            URLQueryItem(name: "apikey", value: publicKey),
+            URLQueryItem(name: "apikey", value: publicKey)
         ]
 
         let customQueryItems: [URLQueryItem]

@@ -7,14 +7,14 @@
 
 import Foundation
 protocol CharacterSearchRepositoryProtocol {
-    func getCharacters(with nameParameter: String?, completion: @escaping (Result<Character, SearchError>) -> Void)
+    func getCharacters(with nameParms: String?, completion: @escaping (Result<Character, SearchError>) -> Void)
 }
 
 class CharacterSearchRepository: CharacterSearchRepositoryProtocol {
     private let apiClient = MarvelAPIClient(publicKey: AppConstants.publicKey, privateKey: AppConstants.privateKey)
 
-    public func getCharacters(with nameParameter: String?, completion: @escaping (Result<Character, SearchError>) -> Void) {
-        apiClient.send(GetCharacters(name: nil, nameStartsWith: nameParameter, limit: nil, offset: nil)) { response in
+    public func getCharacters(with nameParms: String?, completion: @escaping (Result<Character, SearchError>) -> Void) {
+        apiClient.send(GetCharacters(name: nil, nameStartsWith: nameParms, limit: nil, offset: nil)) { response in
             _ = response.map { dataContainer in
                 if dataContainer.results.isEmpty {
                     completion(.failure(.noMatches))

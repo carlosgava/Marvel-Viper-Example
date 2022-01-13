@@ -10,7 +10,9 @@ import UIKit
 
 protocol DetailCharacterViewControllerProtocol: AnyObject { }
 
-class DetailCharacterViewController: DetailTemplateViewController, DetailCharacterViewControllerProtocol, UITableViewDataSource {
+class DetailCharacterViewController: DetailTemplateViewController,
+                                        DetailCharacterViewControllerProtocol,
+                                        UITableViewDataSource {
     private let presenter: DetailCharacterPresenterProtocol
     private var comicItemsArray = [ComicsItem]()
 

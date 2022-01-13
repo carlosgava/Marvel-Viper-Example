@@ -14,9 +14,9 @@ protocol CharacterSearchPresenterProtocol {
 }
 
 class CharacterSearchPresenter {
-    private var repository: CharacterSearchRepositoryProtocol //strong
-    private var router: CharacterSearchRouterProtocol //strong
-    weak var view: CharacterSearchViewControllerProtocol? //weak
+    private var repository: CharacterSearchRepositoryProtocol // strong
+    private var router: CharacterSearchRouterProtocol // strong
+    weak var view: CharacterSearchViewControllerProtocol? // weak
     private var loader = LoaderImage()
 
     private var imagesUrls = [URL]()
@@ -28,7 +28,7 @@ class CharacterSearchPresenter {
 
     private func loadImages() {
         if let newUrl = imagesUrls.popLast() {
-            let _ = loader.loadImage(newUrl) { result in
+            _ = loader.loadImage(newUrl) { result in
                 do {
                     let image = try result.get()
                     DispatchQueue.main.async {

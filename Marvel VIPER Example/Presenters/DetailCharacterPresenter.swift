@@ -13,9 +13,9 @@ protocol DetailCharacterPresenterProtocol {
 }
 
 class DetailCharacterPresenter: DetailCharacterPresenterProtocol {
-    weak var view: DetailCharacterViewControllerProtocol? //weak
-    private var router: DetailCharacterRouterProtocol //strong
-    private var repository: DetailCharacterRepository //strong
+    weak var view: DetailCharacterViewControllerProtocol? // weak
+    private var router: DetailCharacterRouterProtocol // strong
+    private var repository: DetailCharacterRepository // strong
 
     init(repository: DetailCharacterRepository, router: DetailCharacterRouterProtocol) {
         self.router = router

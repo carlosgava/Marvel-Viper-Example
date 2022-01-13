@@ -25,4 +25,3 @@ class DetailCharacterRepository: DetailCharacterRepositoryProtocol {
         return (character, image)
     }
 }
-

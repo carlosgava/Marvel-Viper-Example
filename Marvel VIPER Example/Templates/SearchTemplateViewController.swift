@@ -9,29 +9,29 @@ import Foundation
 import UIKit
 
 class SearchTemplateViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate {
-    var imagesDict = [URL : UIImage]()
+    var imagesDict = [URL: UIImage]()
     let tableView = UITableView()
     private var titleBar = TitleBarView(frame: .zero)
-    
+
     var reuseIdentifier: String?
     var categoryName: String?
-    
+
     var queryText: String = "" {
         didSet {
             dummy.label.text = "Nenhuma correspondência para a consulta \"" + queryText + "\""
         }
     }
     var dummy = EmptyView(frame: .zero, queryText: "")
-    
+
     init(categoryName: String?, reuseIdentifier: String?) {
         super.init(nibName: nil, bundle: nil)
         self.categoryName = categoryName
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -46,7 +46,7 @@ class SearchTemplateViewController: UIViewController, UITableViewDelegate, UISea
         setTableViewHeights()
         setUpDummyView()
     }
-    
+
     private func setupTitleView() {
         view.addSubview(titleBar)
         titleBar.title.text = categoryName?.uppercased()
@@ -56,7 +56,7 @@ class SearchTemplateViewController: UIViewController, UITableViewDelegate, UISea
         titleBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         titleBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
-    
+
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,26 +65,27 @@ class SearchTemplateViewController: UIViewController, UITableViewDelegate, UISea
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
-    
+
     private func setUpDummyView() {
         let bottomConstant = tabBarController?.tabBar.frame.height
         view.addSubview(dummy)
         dummy.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-        dummy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomConstant ?? 0).isActive = true
+        dummy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                      constant: bottomConstant ?? 0).isActive = true
         dummy.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         dummy.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         dummy.isHidden = true
         dummy.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     private func setTableViewHeights() {
         tableView.rowHeight = UITableView.automaticDimension
     }
-    
+
     private func registerCells() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier ?? "cell")
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -104,4 +105,3 @@ extension SearchTemplateViewController: UISearchTextFieldDelegate {
         }
     }
 }
-
